@@ -1,0 +1,41 @@
+/* ─── Morning Delight — Vendor App Global Styles ────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f3f4f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 4px; }
+
+input, select, textarea { outline: none; }
+
+@keyframes fadeUp   { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes bounceIn { 0%{transform:scale(.3);opacity:0} 60%{transform:scale(1.05)} 80%{transform:scale(.95)} 100%{transform:scale(1);opacity:1} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes barGrow  { from{width:0} to{width:var(--w,100%)} }
+@keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+@keyframes spin     { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes bounceIn { 0%{transform:scale(.3);opacity:0} 60%{transform:scale(1.05)} 80%{transform:scale(.96)} 100%{transform:scale(1);opacity:1} }
+
+/* ── Dark-background input placeholders ───────────────────────────── */
+.dark-input::placeholder         { color: rgba(255,255,255,0.35) !important; }
+.otp-box::placeholder            { color: rgba(255,255,255,0.30) !important; font-size: 18px; }
+input[data-dark="true"]::placeholder { color: rgba(255,255,255,0.35) !important; }
+
+/* OTP input — force placeholder and numeric keyboard */
+input.otp-box { -webkit-appearance:none; appearance:none; }
+input.otp-box::-webkit-inner-spin-button,
+input.otp-box::-webkit-outer-spin-button { display:none; }
+
+/* ── Global input focus ring ─────────────────────────────────────── */
+input:focus { transition: border-color .2s, box-shadow .2s; }
