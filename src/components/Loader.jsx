@@ -7,7 +7,7 @@ export default function Loader() {
   return (
     <div style={{ minHeight: '100vh', background: '#2d5a3d', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
       <img src={FOOD_IMGS.VendorBg} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: .18 }} />
-      <div style={{ position: 'absolute', inset: 0, background: '#07091A' }} />
+      <div style={{ position: 'absolute', inset: 0, background: '#07091A ' }} />
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ width: 88, height: 88, borderRadius: 22, overflow: 'hidden', marginBottom: 24, boxShadow: '0 12px 40px rgba(0,0,0,.3)', border: '2px solid rgba(255,255,255,.2)' }}>
           <img src={FOOD_IMGS.VendorBg} alt="Vendor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
