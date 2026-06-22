@@ -8,19 +8,19 @@ import { LogoMark } from '../components/Logo';
 import { enc } from '../utils/constants';
 
 // Deep blue palette
-const BG1      = '#07091A';
+const BG1      = '#00052e';
 const BG2      = '#120D2E';
 const CARD     = 'rgba(255,255,255,0.05)';
 const CARD_D   = '#131830';
-const INPUT_BG = 'rgba(255,255,255,0.07)';
+const INPUT_BG = 'rgba(95, 95, 95, 0.5)';
 const BORDER   = 'rgba(255,255,255,0.12)';
-const BORDER_F = 'rgba(107,78,255,0.6)';
+const BORDER_F = 'rgba(25, 0, 150, 0.6)';
 const BTN      = 'linear-gradient(135deg,#6B4EFF 0%,#A855F7 100%)';
-const BTN_SH   = '0 8px 28px rgba(107,78,255,0.45)';
+const BTN_SH   = '0 8px 28px rgba(33, 0, 199, 0.45)';
 const WHITE    = '#FFFFFF';
-const MUTED    = 'rgba(255,255,255,0.55)';
-const ACCENT   = '#A78BFA';
-const GREEN    = '#2d5a3d';
+const MUTED    = 'rgba(255, 255, 255, 0.82)';
+const ACCENT   = '#2f00bb';
+const GREEN    = '#1e6b00';
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -78,8 +78,8 @@ function PurpleBtn({ children, onClick, disabled }) {
 function detectMoMoNetwork(phone) {
   const n = phone.replace(/\D/g,'');
   if (/^(024|054|055|059)/.test(n)) return { name:'MTN MoMo', color:'#FFCC00' };
-  if (/^(020|050)/.test(n))         return { name:'Vodafone Cash', color:'#DC2626' };
-  if (/^(026|056|027|057)/.test(n)) return { name:'AirtelTigo', color:'#EA580C' };
+  if (/^(020|050)/.test(n))         return { name:'Vodafone Cash', color:'#d40000' };
+  if (/^(026|056|027|057)/.test(n)) return { name:'AirtelTigo', color:'#f05400' };
   return null;
 }
 

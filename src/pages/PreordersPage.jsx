@@ -7,12 +7,12 @@ import DB from '../utils/db';
 import { FOOD_IMGS } from '../utils/constants';
 
 const STATUS_OPTIONS = ['pending','confirmed','preparing','ready','on_the_way','delivered','cancelled'];
-const STATUS_COLORS  = { pending:'#F59E0B', confirmed:'#FF6B35', preparing:'#7C3AED', ready:'#10b981', delivered:'#6B7280', cancelled:'#EF4444' };
+const STATUS_COLORS  = { pending:'#eb9500', confirmed:'#f34100', preparing:'#370097', ready:'#00880b', delivered:'#00115a', cancelled:'#b40000' };
 
 function StatusBadge({ status }) {
-  const col = STATUS_COLORS[status] || '#9CA3AF';
+  const col = STATUS_COLORS[status] || '#002c79';
   return (
-    <span style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:20, background:`${col}18`, color:col, border:`1px solid ${col}30` }}>
+    <span style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:20, background:` #000838`, color:"#f1f3fa", border:`1px solid #f5f5f5` }}>
       {status}
     </span>
   );
@@ -81,7 +81,7 @@ export default function PreordersPage({ vendor, showToast }) {
           const count = all.filter(o=>o.status===s).length;
           return (
             <div key={s} style={{ background:'white', borderRadius:14, padding:'14px 16px', boxShadow:'0 2px 8px rgba(0,0,0,.05)', borderTop:`3px solid ${STATUS_COLORS[s]||'#9CA3AF'}` }}>
-              <div style={{ fontFamily:'Sora,sans-serif', fontSize:26, fontWeight:800, color:'#1a1a1a' }}>{count}</div>
+              <div style={{ fontFamily:'Sora,sans-serif', fontSize:26, fontWeight:800, color:'#060053' }}>{count}</div>
               <div style={{ fontSize:11, color:'#9a9a9a', textTransform:'capitalize', marginTop:2 }}>{s}</div>
             </div>
           );
@@ -91,7 +91,7 @@ export default function PreordersPage({ vendor, showToast }) {
       {/* Filter tabs */}
       <div style={{ display:'flex', gap:8, marginBottom:20, flexWrap:'wrap' }}>
         {['all',...STATUS_OPTIONS].map(s=>(
-          <button key={s} onClick={()=>setFilter(s)} style={{ padding:'7px 16px', borderRadius:20, border:'1.5px solid', borderColor:filter===s?'#e8935a':'#e5e0d8', background:filter===s?'#e8935a':'white', color:filter===s?'white':'#5a5a5a', fontFamily:'inherit', fontSize:12, fontWeight:filter===s?700:400, cursor:'pointer', textTransform:'capitalize', transition:'all .15s' }}>
+          <button key={s} onClick={()=>setFilter(s)} style={{ padding:'7px 16px', borderRadius:20, border:'1.5px solid', borderColor:filter===s?'#ff6600':'#e5e0d8', background:filter===s?'#000838':'white', color:filter===s?'white':'#001653', fontFamily:'inherit', fontSize:12, fontWeight:filter===s?700:400, cursor:'pointer', textTransform:'capitalize', transition:'all .15s' }}>
             {s==='all'?'All Orders':s} {s!=='all'&&`(${all.filter(o=>o.status===s).length})`}
           </button>
         ))}
@@ -157,13 +157,13 @@ export default function PreordersPage({ vendor, showToast }) {
                   <div style={{ background:'#f9f9f7', borderRadius:12, padding:'10px 14px', marginBottom:12, display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:8 }}>
                     <div>
                       <div style={{ fontWeight:700, fontSize:14, color:'#1a1a1a' }}>{customer?.name || 'Customer'}</div>
-                      <div style={{ fontSize:12, color:'#9a9a9a', marginTop:2 }}>
+                      <div style={{ fontSize:12, color:'#5a5959', marginTop:2 }}>
                         {customer?.phone && <span>{customer.phone}</span>}
                         {customer?.phone && customer?.location && <span style={{ margin:'0 6px', color:'#e5e0d8' }}>·</span>}
                         {customer?.location && <span>{customer.location}</span>}
                       </div>
                     </div>
-                    <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:17, color:'#2d5a3d' }}>
+                    <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:17, color:'#000838' }}>
                       GH₵{parseFloat(o.total||0).toFixed(2)}
                     </div>
                   </div>
@@ -171,7 +171,7 @@ export default function PreordersPage({ vendor, showToast }) {
                   {/* Items */}
                   <div style={{ marginBottom:14 }}>
                     {o.items?.map((item, idx) => (
-                      <div key={idx} style={{ display:'flex', justifyContent:'space-between', fontSize:13, padding:'4px 0', color:'#5a5a5a' }}>
+                      <div key={idx} style={{ display:'flex', justifyContent:'space-between', fontSize:13, padding:'4px 0', color:'#313030' }}>
                         <span>{item.qty}× {item.name}</span>
                         <span style={{ fontWeight:600 }}>GH₵{(item.price*item.qty).toFixed(2)}</span>
                       </div>
@@ -180,7 +180,7 @@ export default function PreordersPage({ vendor, showToast }) {
 
                   {/* Special note if any */}
                   {o.note && (
-                    <div style={{ background:'#FFF7ED', border:'1px solid #FED7AA', borderRadius:10, padding:'8px 12px', marginBottom:12, fontSize:12, color:'#92400E' }}>
+                    <div style={{ background:'#FFF7ED', border:'1px solid #ff8800', borderRadius:10, padding:'8px 12px', marginBottom:12, fontSize:12, color:'#853300' }}>
                       Note: {o.note}
                     </div>
                   )}
@@ -190,7 +190,7 @@ export default function PreordersPage({ vendor, showToast }) {
                     <span style={{ fontSize:12, color:'#9a9a9a', fontWeight:600 }}>Update status:</span>
                     <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
                       {STATUS_OPTIONS.filter(s=>s!==o.status).map(s=>(
-                        <button key={s} onClick={()=>updateStatus(o.id,s)} style={{ padding:'6px 14px', background:'white', border:`1.5px solid ${STATUS_COLORS[s]||'#e5e0d8'}`, borderRadius:20, color:STATUS_COLORS[s]||'#5a5a5a', fontFamily:'inherit', fontSize:12, fontWeight:600, cursor:'pointer', textTransform:'capitalize', transition:'all .15s' }}
+                        <button key={s} onClick={()=>updateStatus(o.id,s)} style={{ padding:'6px 14px', background:'#000838', border:`1.5px solid ${STATUS_COLORS[s]||'#ffffff'}`, borderRadius:20, color:STATUS_COLORS[s]||'#5a5a5a', fontFamily:'inherit', fontSize:12, fontWeight:600, cursor:'pointer', textTransform:'capitalize', transition:'all .15s' }}
                           onMouseEnter={e=>{e.target.style.background=`${STATUS_COLORS[s]}15`;}}
                           onMouseLeave={e=>{e.target.style.background='white';}}>
                           {s}

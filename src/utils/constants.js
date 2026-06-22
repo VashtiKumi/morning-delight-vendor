@@ -3,8 +3,8 @@ export const DELIVERY_FEE = 2.00;
 export const SERVICE_FEE  = 1.50;
 
 export const REWARD_TIERS = [
-  { points:500,  credit:10, label:'Bronze Star',   color:'#cd7f32' },
-  { points:1000, credit:20, label:'Gold Champion', color:'#ffd60a' },
+  { points:500,  credit:10, label:'Bronze Star',   color:'#fa7000' },
+  { points:1000, credit:20, label:'Gold Champion', color:'#f8cf00' },
   { points:2000, credit:50, label:'Platinum Elite',color:'#e5e4e2' },
 ];
 
@@ -47,11 +47,11 @@ export const PAYSTACK_PUBLIC_KEY = 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxx';
 
 // Color palette — Morning Delight brand
 export const BRAND = {
-  primary:  '#FF6B35',
+  primary:  '#000838',
   dark:     '#1A1A2E',
-  darkCard: '#16213E',
-  accent:   '#F7931E',
-  success:  '#10b981',
+  darkCard: '#001141',
+  accent:   '#f58300',
+  success:  '#198000',
   text:     '#0F0F0F',
   muted:    '#9CA3AF',
 };

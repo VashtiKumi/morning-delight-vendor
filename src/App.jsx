@@ -40,7 +40,7 @@ function NewOrderAlert({ orders, onDismiss }) {
             <div key={o.id} style={{ background:'#fff7ed', border:'1px solid #fed7aa', borderRadius:14, padding:'12px 16px', marginBottom:10, textAlign:'left' }}>
               <div style={{ fontWeight:700, fontSize:14, marginBottom:4 }}>#{o.id.slice(0,8).toUpperCase()} — {c?.name||'Customer'}</div>
               <div style={{ fontSize:12, color:'#6B7280', marginBottom:6 }}>{o.items?.map(i=>`${i.qty}× ${i.name}`).join(', ')}</div>
-              <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:16, color:'#FF6B35' }}>GH₵{parseFloat(o.total||0).toFixed(2)}</div>
+              <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:16, color:'#ec3f00' }}>GH₵{parseFloat(o.total||0).toFixed(2)}</div>
             </div>
           );
         })}
@@ -73,7 +73,7 @@ function SubAlert({ vendor, onGoToBilling }) {
       <div style={{ display:'flex', alignItems:'center', gap:10 }}>
         <span style={{ fontSize:20 }}>{isOverdue?'🔴':'⚠️'}</span>
         <div>
-          <div style={{ fontWeight:700, fontSize:13, color:isOverdue?'#EF4444':'#92400E' }}>
+          <div style={{ fontWeight:700, fontSize:13, color:isOverdue?'#f00000':'#92400E' }}>
             {isOverdue
               ? `Commission Overdue — GH₵${info.totalOwed?.toFixed(2)} outstanding`
               : isTrial
@@ -81,7 +81,7 @@ function SubAlert({ vendor, onGoToBilling }) {
                 : `Commission due in ${info.daysUntilDue} day${info.daysUntilDue!==1?'s':''}!`
             }
           </div>
-          <div style={{ fontSize:11, color:isOverdue?'#EF4444':'#92400E', opacity:.75 }}>
+          <div style={{ fontSize:11, color:isOverdue?'#ec0000':'#92400E', opacity:.75 }}>
             {isOverdue
               ? `Pay to MoMo ${COLLECTION_MOMO} to restore full access`
               : `After trial: 10% commission on deliveries, due every 2 weeks. Pay to ${COLLECTION_MOMO}`
@@ -89,7 +89,7 @@ function SubAlert({ vendor, onGoToBilling }) {
           </div>
         </div>
       </div>
-      <button onClick={onGoToBilling} style={{ padding:'7px 16px', background:isOverdue?'#EF4444':'#F59E0B', border:'none', borderRadius:20, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:12, cursor:'pointer', flexShrink:0 }}>
+      <button onClick={onGoToBilling} style={{ padding:'7px 16px', background:isOverdue?'#be0000':'#eb9500', border:'none', borderRadius:20, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:12, cursor:'pointer', flexShrink:0 }}>
         Go to Billing →
       </button>
     </div>
@@ -177,7 +177,7 @@ export default function App() {
         <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
           {/* Mobile top bar */}
           {isMobile && (
-            <div style={{ background:'#2d5a3d', padding:'max(44px,env(safe-area-inset-top)) 16px 12px', display:'flex', alignItems:'center', gap:12, position:'sticky', top:0, zIndex:200 }}>
+            <div style={{ background:'#000838', padding:'max(44px,env(safe-area-inset-top)) 16px 12px', display:'flex', alignItems:'center', gap:12, position:'sticky', top:0, zIndex:200 }}>
               <button onClick={()=>setMenuOpen(true)} style={{ width:38, height:38, borderRadius:10, background:'rgba(255,255,255,0.1)', border:'none', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
               </button>
@@ -192,7 +192,7 @@ export default function App() {
           {isMobile && menuOpen && (
             <div style={{ position:'fixed', inset:0, zIndex:1000 }}>
               <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.5)' }} onClick={()=>setMenuOpen(false)}/>
-              <div style={{ position:'absolute', top:0, left:0, bottom:0, width:280, background:'#2d5a3d', padding:'max(56px,env(safe-area-inset-top)) 0 0', overflowY:'auto', animation:'slideRight .28s cubic-bezier(.34,1.2,.64,1)' }}>
+              <div style={{ position:'absolute', top:0, left:0, bottom:0, width:280, background:'#000838', padding:'max(56px,env(safe-area-inset-top)) 0 0', overflowY:'auto', animation:'slideRight .28s cubic-bezier(.34,1.2,.64,1)' }}>
                 <Sidebar section={section} setSection={(s)=>{setSection(s);setMenuOpen(false);}} vendor={vendor} onLogout={handleLogout} />
               </div>
               <style>{`@keyframes slideRight{from{transform:translateX(-100%)}to{transform:translateX(0)}}`}</style>

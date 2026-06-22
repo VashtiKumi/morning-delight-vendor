@@ -43,12 +43,12 @@ export default function Sidebar({ section, setSection, vendor, onLogout }) {
     : (billingAlert ? '!' : null);
 
   return (
-    <aside style={{ width:220, background:'#2d5a3d', display:'flex', flexDirection:'column', padding:'18px 12px', minHeight:'100vh', position:'sticky', top:0, height:'100vh', overflowY:'auto' }}>
+    <aside style={{ width:220, background:'#000838', display:'flex', flexDirection:'column', padding:'18px 12px', minHeight:'100vh', position:'sticky', top:0, height:'100vh', overflowY:'auto' }}>
       {/* Brand */}
       <div style={{ padding:'0 8px', marginBottom:8, display:'flex', alignItems:'center', gap:9 }}>
         <LogoMark size={36}/>
         <div>
-          <div style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:11, color:'#FF8C42', letterSpacing:2, textTransform:'uppercase', lineHeight:1.0 }}>Morning</div>
+          <div style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:11, color:'#f35d00', letterSpacing:2, textTransform:'uppercase', lineHeight:1.0 }}>Morning</div>
           <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:14, color:'white', lineHeight:1.1 }}>Delight</div>
           <div style={{ fontSize:9, color:'rgba(255,255,255,.3)', letterSpacing:1, textTransform:'uppercase', marginTop:1 }}>Vendor Portal</div>
         </div>
@@ -65,7 +65,7 @@ export default function Sidebar({ section, setSection, vendor, onLogout }) {
       {/* Subscription mini-status */}
       {subInfo && (
         <div style={{ borderRadius:8, padding:'8px 12px', margin:'4px 0 14px', background: subInfo.status==='overdue'?'rgba(239,68,68,.15)' : subInfo.alertDue?'rgba(245,158,11,.15)' : 'rgba(16,185,129,.1)', border:`1px solid ${subInfo.status==='overdue'?'rgba(239,68,68,.3)':subInfo.alertDue?'rgba(245,158,11,.3)':'rgba(16,185,129,.2)'}` }}>
-          <div style={{ fontSize:10, fontWeight:700, color: subInfo.status==='overdue'?'#EF4444':subInfo.alertDue?'#F59E0B':'#10b981', textTransform:'uppercase', letterSpacing:.8, marginBottom:3 }}>
+          <div style={{ fontSize:10, fontWeight:700, color: subInfo.status==='overdue'?'#f10000':subInfo.alertDue?'#ffa200':'#058d00', textTransform:'uppercase', letterSpacing:.8, marginBottom:3 }}>
             {subInfo.status==='trial'?'Free Trial':subInfo.status==='overdue'?'⚠ Overdue':'Subscribed'}
           </div>
           <div style={{ fontSize:11, color:'rgba(255,255,255,.7)' }}>
@@ -87,8 +87,8 @@ export default function Sidebar({ section, setSection, vendor, onLogout }) {
               <path d={NAV_SVGS[id]}/>
             </svg>
             <span style={{ flex:1 }}>{label}</span>
-            {id==='orders'  && pending > 0     && <span style={{ background:'#ef4444', color:'white', fontSize:10, fontWeight:700, padding:'1px 6px', borderRadius:20 }}>{pending}</span>}
-            {id==='billing' && billingBadge     && <span style={{ background: subInfo?.status==='overdue'?'#EF4444':'#F59E0B', color:'white', fontSize:10, fontWeight:700, padding:'1px 7px', borderRadius:20 }}>{billingBadge}</span>}
+            {id==='orders'  && pending > 0     && <span style={{ background:'#eb0000', color:'white', fontSize:10, fontWeight:700, padding:'1px 6px', borderRadius:20 }}>{pending}</span>}
+            {id==='billing' && billingBadge     && <span style={{ background: subInfo?.status==='overdue'?'#e00000':'#ee9700', color:'white', fontSize:10, fontWeight:700, padding:'1px 7px', borderRadius:20 }}>{billingBadge}</span>}
           </button>
         ))}
       </nav>
@@ -96,7 +96,7 @@ export default function Sidebar({ section, setSection, vendor, onLogout }) {
       {/* Logout */}
       <button onClick={onLogout}
         style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 12px', borderRadius:8, cursor:'pointer', color:'rgba(255,255,255,.35)', fontSize:14, transition:'all .15s', background:'transparent', border:'none', fontFamily:'inherit', width:'100%' }}
-        onMouseEnter={e=>{e.currentTarget.style.color='#ef4444';}}
+        onMouseEnter={e=>{e.currentTarget.style.color='#c40000';}}
         onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,.35)';}}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>

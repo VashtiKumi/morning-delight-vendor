@@ -19,7 +19,7 @@ const fi = {
 function Label({ children, required }) {
   return (
     <label style={{ display:'block', fontSize:11, fontWeight:700, color:'#7a7a7a', marginBottom:7, textTransform:'uppercase', letterSpacing:.8 }}>
-      {children}{required && <span style={{ color:'#ef4444', marginLeft:3 }}>*</span>}
+      {children}{required && <span style={{ color:'#e40000', marginLeft:3 }}>*</span>}
     </label>
   );
 }
@@ -47,11 +47,11 @@ function MenuCard({ item, onEdit, onDelete, onToggle }) {
         />
         {/* Badges */}
         <div style={{ position:'absolute', top:8, left:8, display:'flex', flexDirection:'column', gap:4 }}>
-          {item.popular && <span style={{ background:'#FF6B35', color:'white', fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:20 }}>Popular</span>}
-          {item.discount > 0 && <span style={{ background:'#EF4444', color:'white', fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:20 }}>-{item.discount}%</span>}
+          {item.popular && <span style={{ background:'#000838', color:'white', fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:20 }}>Popular</span>}
+          {item.discount > 0 && <span style={{ background:'#da0000', color:'white', fontSize:9, fontWeight:700, padding:'2px 8px', borderRadius:20 }}>-{item.discount}%</span>}
         </div>
         {/* Availability toggle */}
-        <button onClick={()=>onToggle(item)} style={{ position:'absolute', top:8, right:8, padding:'4px 10px', background:item.available!==false?'rgba(16,185,129,.9)':'rgba(239,68,68,.85)', border:'none', borderRadius:20, color:'white', fontSize:10, fontWeight:700, cursor:'pointer', backdropFilter:'blur(4px)' }}>
+        <button onClick={()=>onToggle(item)} style={{ position:'absolute', top:8, right:8, padding:'4px 10px', background:item.available!==false?'#000838':'rgba(219, 0, 0, 0.85)', border:'none', borderRadius:20, color:'white', fontSize:10, fontWeight:700, cursor:'pointer', backdropFilter:'blur(4px)' }}>
           {item.available!==false ? 'Live' : 'Hidden'}
         </button>
       </div>
@@ -70,7 +70,7 @@ function MenuCard({ item, onEdit, onDelete, onToggle }) {
 
         {/* Price row */}
         <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:12 }}>
-          <span style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:18, color:'#2d5a3d' }}>
+          <span style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:18, color:'#000838' }}>
             GH₵{discountedPrice || item.price?.toFixed(2)}
           </span>
           {discountedPrice && (
@@ -84,7 +84,7 @@ function MenuCard({ item, onEdit, onDelete, onToggle }) {
         </div>
 
         {!item.imageData && (
-          <div style={{ fontSize:11, color:'#c8871a', background:'#fefce8', border:'1px solid #fde68a', borderRadius:8, padding:'5px 10px', marginBottom:10 }}>
+          <div style={{ fontSize:11, color:'#ffa200', background:'#fefce8', border:'1px solid #fde68a', borderRadius:8, padding:'5px 10px', marginBottom:10 }}>
             No photo — add one to boost orders
           </div>
         )}
@@ -92,26 +92,26 @@ function MenuCard({ item, onEdit, onDelete, onToggle }) {
         {/* Action buttons */}
         {confirmDelete ? (
           <div style={{ background:'#fef2f2', border:'1px solid #fecdd3', borderRadius:12, padding:'12px 10px' }}>
-            <p style={{ fontFamily:'DM Sans,sans-serif', fontSize:13, color:'#ef4444', fontWeight:600, textAlign:'center', marginBottom:10 }}>
+            <p style={{ fontFamily:'DM Sans,sans-serif', fontSize:13, color:'#eb0000', fontWeight:600, textAlign:'center', marginBottom:10 }}>
               Delete &ldquo;{item.name}&rdquo;? This cannot be undone.
             </p>
             <div style={{ display:'flex', gap:8 }}>
               <button onClick={()=>{ onDelete(item.id, item.name); setConfirmDelete(false); }}
-                style={{ flex:1, padding:'9px', background:'#ef4444', border:'none', borderRadius:10, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer' }}>
+                style={{ flex:1, padding:'9px', background:'#ce0000', border:'none', borderRadius:10, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer' }}>
                 Yes, Delete
               </button>
               <button onClick={()=>setConfirmDelete(false)}
-                style={{ flex:1, padding:'9px', background:'white', border:'1px solid #e5e7eb', borderRadius:10, color:'#374151', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer' }}>
+                style={{ flex:1, padding:'9px', background:'white', border:'1px solid #e5e7eb', borderRadius:10, color:'#002155', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer' }}>
                 Cancel
               </button>
             </div>
           </div>
         ) : (
           <div style={{ display:'flex', gap:8 }}>
-            <button onClick={()=>onEdit(item)} style={{ flex:1, padding:'9px', background:'#f0f7f2', border:'1px solid #c6ddc9', borderRadius:10, color:'#2d5a3d', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer', transition:'all .15s' }}>
+            <button onClick={()=>onEdit(item)} style={{ flex:1, padding:'9px', background:'#f0f7f2', border:'1px solid #c6ddc9', borderRadius:10, color:'#000838', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer', transition:'all .15s' }}>
               Edit
             </button>
-            <button onClick={()=>setConfirmDelete(true)} style={{ flex:1, padding:'9px', background:'#fff1f2', border:'1px solid #fecdd3', borderRadius:10, color:'#ef4444', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer', transition:'all .15s' }}>
+            <button onClick={()=>setConfirmDelete(true)} style={{ flex:1, padding:'9px', background:'#fff1f2', border:'1px solid #fecdd3', borderRadius:10, color:'#f80000', fontFamily:'inherit', fontWeight:700, fontSize:13, cursor:'pointer', transition:'all .15s' }}>
               Delete
             </button>
           </div>
@@ -187,8 +187,8 @@ export default function MenuPage({ vendor, showToast }) {
   };
 
   const handleFileInput = (e)  => processImageFile(e.target.files[0]);
-  const handleDragOver  = (e)  => { e.preventDefault(); e.currentTarget.style.borderColor='#2d5a3d'; };
-  const handleDragLeave = (e)  => e.currentTarget.style.borderColor = form.imageData?'#2d5a3d':'#e5e0d8';
+  const handleDragOver  = (e)  => { e.preventDefault(); e.currentTarget.style.borderColor='#000f66'; };
+  const handleDragLeave = (e)  => e.currentTarget.style.borderColor = form.imageData?'#030163':'#e5e0d8';
   const handleDrop      = (e)  => { e.preventDefault(); e.currentTarget.style.borderColor = form.imageData?'#2d5a3d':'#e5e0d8'; processImageFile(e.dataTransfer.files[0]); };
 
   // ── Save item ──
@@ -248,10 +248,10 @@ export default function MenuPage({ vendor, showToast }) {
           <h1 style={{ fontFamily:'Sora,sans-serif', fontSize:24, fontWeight:800, color:'#1a1a1a' }}>Menu Management</h1>
           <p style={{ color:'#9a9a9a', fontSize:13, marginTop:4 }}>
             {allItems.length} item{allItems.length!==1?'s':''} total · {liveCount} live
-            <span style={{ color:'#10b981', fontWeight:700, marginLeft:8 }}>● Customers see changes instantly</span>
+            <span style={{ color:'#001275', fontWeight:700, marginLeft:8 }}>● Customers see changes instantly</span>
           </p>
         </div>
-        <button onClick={openAdd} style={{ padding:'11px 22px', background:'#2d5a3d', border:'none', borderRadius:12, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:14, cursor:'pointer', display:'flex', alignItems:'center', gap:8, boxShadow:'0 4px 14px rgba(45,90,61,.35)' }}>
+        <button onClick={openAdd} style={{ padding:'11px 22px', background:'#000838', border:'none', borderRadius:12, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:14, cursor:'pointer', display:'flex', alignItems:'center', gap:8, boxShadow:'0 4px 14px rgba(0,8,56,.35)' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Add New Item
         </button>
@@ -265,7 +265,7 @@ export default function MenuPage({ vendor, showToast }) {
         </div>
         <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
           {['all',...CATEGORIES].map(c=>(
-            <button key={c} onClick={()=>setCatFilter(c)} style={{ padding:'9px 14px', borderRadius:20, border:'1.5px solid', borderColor:catFilter===c?'#2d5a3d':'#e5e0d8', background:catFilter===c?'#2d5a3d':'white', color:catFilter===c?'white':'#5a5a5a', fontFamily:'inherit', fontSize:12, fontWeight:catFilter===c?700:400, cursor:'pointer', transition:'all .15s', whiteSpace:'nowrap' }}>
+            <button key={c} onClick={()=>setCatFilter(c)} style={{ padding:'9px 14px', borderRadius:20, border:'1.5px solid', borderColor:catFilter===c?'#000838':'#e5e0d8', background:catFilter===c?'#000838':'white', color:catFilter===c?'white':'#5a5a5a', fontFamily:'inherit', fontSize:12, fontWeight:catFilter===c?700:400, cursor:'pointer', transition:'all .15s', whiteSpace:'nowrap' }}>
               {c==='all'?'All Categories':c}
             </button>
           ))}
@@ -285,7 +285,7 @@ export default function MenuPage({ vendor, showToast }) {
             {search||catFilter!=='all' ? 'Try a different search or category' : 'Add your first menu item and start receiving orders'}
           </p>
           {!search&&catFilter==='all'&&(
-            <button onClick={openAdd} style={{ padding:'12px 28px', background:'#2d5a3d', border:'none', borderRadius:12, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:14, cursor:'pointer' }}>
+            <button onClick={openAdd} style={{ padding:'12px 28px', background:'#000838', border:'none', borderRadius:12, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:14, cursor:'pointer' }}>
               Add Your First Item
             </button>
           )}
@@ -319,19 +319,19 @@ export default function MenuPage({ vendor, showToast }) {
             <div style={{ marginBottom:22 }}>
               <Label>Food Photo</Label>
               <div
-                style={{ border:`2px dashed ${form.imageData?'#2d5a3d':'#e5e0d8'}`, borderRadius:14, overflow:'hidden', cursor:'pointer', background:form.imageData?'#f0f7f2':'#f9f9f7', transition:'all .2s', minHeight:140, display:'flex', alignItems:'center', justifyContent:'center', position:'relative' }}
+                style={{ border:`2px dashed ${form.imageData?'#07006d':'#e5e0d8'}`, borderRadius:14, overflow:'hidden', cursor:'pointer', background:form.imageData?'#f0f7f2':'#f9f9f7', transition:'all .2s', minHeight:140, display:'flex', alignItems:'center', justifyContent:'center', position:'relative' }}
                 onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
               >
                 {imgLoading && (
                   <div style={{ position:'absolute', inset:0, background:'rgba(255,255,255,.8)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:2 }}>
-                    <div style={{ width:32, height:32, borderRadius:'50%', border:'3px solid #2d5a3d', borderTopColor:'transparent', animation:'spin 1s linear infinite' }} />
+                    <div style={{ width:32, height:32, borderRadius:'50%', border:'3px solid #000838', borderTopColor:'transparent', animation:'spin 1s linear infinite' }} />
                   </div>
                 )}
                 {form.imageData ? (
                   <div style={{ position:'relative', width:'100%' }}>
                     <img src={form.imageData} alt="preview" style={{ width:'100%', height:180, objectFit:'cover', display:'block' }} />
                     <button onClick={()=>upd('imageData','')} style={{ position:'absolute', top:8, right:8, width:30, height:30, borderRadius:'50%', background:'rgba(0,0,0,.65)', border:'none', color:'white', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16 }}>×</button>
-                    <label htmlFor="food-img-upload" style={{ position:'absolute', bottom:10, right:10, padding:'6px 14px', background:'rgba(255,255,255,.9)', borderRadius:20, fontSize:12, fontWeight:700, cursor:'pointer', color:'#2d5a3d' }}>Change Photo</label>
+                    <label htmlFor="food-img-upload" style={{ position:'absolute', bottom:10, right:10, padding:'6px 14px', background:'rgba(255,255,255,.9)', borderRadius:20, fontSize:12, fontWeight:700, cursor:'pointer', color:'#000838' }}>Change Photo</label>
                   </div>
                 ) : (
                   <label htmlFor="food-img-upload" style={{ display:'flex', flexDirection:'column', alignItems:'center', padding:'32px 20px', cursor:'pointer', width:'100%' }}>
@@ -340,7 +340,7 @@ export default function MenuPage({ vendor, showToast }) {
                     </div>
                     <div style={{ fontSize:14, fontWeight:700, color:'#5a5a5a', marginBottom:4 }}>Drag & drop or click to upload</div>
                     <div style={{ fontSize:12, color:'#9a9a9a', marginBottom:14 }}>JPG · PNG · WEBP · max 3MB · auto-compressed</div>
-                    <div style={{ padding:'8px 20px', background:'#2d5a3d', color:'white', borderRadius:20, fontSize:13, fontWeight:700 }}>Choose Photo</div>
+                    <div style={{ padding:'8px 20px', background:'#000838', color:'white', borderRadius:20, fontSize:13, fontWeight:700 }}>Choose Photo</div>
                   </label>
                 )}
                 <input id="food-img-upload" ref={fileRef} type="file" accept="image/*" style={{ display:'none' }} onChange={handleFileInput} />
@@ -406,7 +406,7 @@ export default function MenuPage({ vendor, showToast }) {
 
             {/* ── Save / Cancel ── */}
             <div style={{ display:'flex', gap:12 }}>
-              <button onClick={saveItem} style={{ flex:2, padding:'14px', background:'#2d5a3d', border:'none', borderRadius:14, color:'white', fontFamily:'inherit', fontWeight:800, fontSize:15, cursor:'pointer', transition:'all .15s' }}>
+              <button onClick={saveItem} style={{ flex:2, padding:'14px', background:'#000c52', border:'none', borderRadius:14, color:'white', fontFamily:'inherit', fontWeight:800, fontSize:15, cursor:'pointer', transition:'all .15s' }}>
                 {editing ? 'Save Changes' : 'Add to Menu'}
               </button>
               <button onClick={()=>setShowModal(false)} style={{ flex:1, padding:'14px', background:'#f5f5f5', border:'1px solid #e5e0d8', borderRadius:14, color:'#5a5a5a', fontFamily:'inherit', fontWeight:700, fontSize:14, cursor:'pointer' }}>

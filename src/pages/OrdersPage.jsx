@@ -18,10 +18,10 @@ export default function OrdersPage({ vendor, showToast }) {
 
   return (
     <div style={{ padding:32, animation:'fadeUp .4s ease' }}>
-      <h1 style={{ fontFamily:'Sora, sans-serif', fontSize:24, fontWeight:800, color:'#1a1a1a', marginBottom:20 }}>All Orders</h1>
+      <h1 style={{ fontFamily:'Sora, sans-serif', fontSize:24, fontWeight:800, color:'#574f4f', marginBottom:20 }}>All Orders</h1>
       <div style={{ display:'flex', gap:8, marginBottom:20, flexWrap:'wrap' }}>
         {TABS.map((t) => (
-          <button key={t} onClick={() => setTab(t)} style={{ padding:'7px 16px', borderRadius:20, border:'1.5px solid', borderColor:tab===t?'#2d5a3d':'#e0d8cc', background:tab===t?'#2d5a3d':'white', color:tab===t?'white':'#9a9a9a', fontFamily:'inherit', fontSize:13, fontWeight:tab===t?700:400, cursor:'pointer', textTransform:'capitalize' }}>
+          <button key={t} onClick={() => setTab(t)} style={{ padding:'7px 16px', borderRadius:20, border:'1.5px solid', borderColor:tab===t?'#000838':'#e0d8cc', background:tab===t?'#000838':'white', color:tab===t?'white':'#d4c2c2', fontFamily:'inherit', fontSize:13, fontWeight:tab===t?700:400, cursor:'pointer', textTransform:'capitalize' }}>
             {t}
           </button>
         ))}

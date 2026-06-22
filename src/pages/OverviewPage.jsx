@@ -34,7 +34,7 @@ export default function OverviewPage({ vendor, showToast }) {
       showToast(`Order updated to: ${st}`,'success'); rerender(n=>n+1); }
   };
 
-  const STATUS_COLORS = { pending:'#F59E0B', confirmed:'#FF6B35', preparing:'#7C3AED', ready:'#10b981', delivered:'#6B7280', cancelled:'#EF4444' };
+  const STATUS_COLORS = { pending:'#ffa200', confirmed:'#f04203', preparing:'#370096', ready:'#008f18', delivered:'#152546', cancelled:'#d80000' };
 
   return (
     <div style={{ padding:28, animation:'fadeUp .4s ease', minHeight:'100vh', background:'#f9f9f7' }}>
@@ -68,7 +68,7 @@ export default function OverviewPage({ vendor, showToast }) {
                     <div style={{ fontSize:12, color:'#9a9a9a' }}>{o.items?.map(i=>`${i.qty}x ${i.name}`).join(', ')}</div>
                   </div>
                   <div style={{ display:'flex', gap:8, alignItems:'center' }}>
-                    <span style={{ fontFamily:'Sora,sans-serif', fontWeight:800, color:'#2d5a3d' }}>GH₵{parseFloat(o.total).toFixed(2)}</span>
+                    <span style={{ fontFamily:'Sora,sans-serif', fontWeight:800, color:'#001858' }}>GH₵{parseFloat(o.total).toFixed(2)}</span>
                     <button onClick={()=>updateStatus(o.id,'confirmed')} style={{ padding:'6px 14px', background:'#2d5a3d', border:'none', borderRadius:20, color:'white', fontFamily:'inherit', fontWeight:700, fontSize:12, cursor:'pointer' }}>Accept</button>
                     <button onClick={()=>updateStatus(o.id,'cancelled')} style={{ padding:'6px 14px', background:'white', border:'1px solid #FECACA', borderRadius:20, color:'#EF4444', fontFamily:'inherit', fontWeight:600, fontSize:12, cursor:'pointer' }}>Decline</button>
                   </div>
@@ -108,9 +108,9 @@ export default function OverviewPage({ vendor, showToast }) {
                       <td style={{ padding:'12px 16px', fontWeight:700, fontSize:13 }}>#{o.id.slice(0,6).toUpperCase()}</td>
                       <td style={{ padding:'12px 16px', fontSize:13 }}>{c?.name||'Customer'}</td>
                       <td style={{ padding:'12px 16px', fontSize:12, color:'#5a5a5a', maxWidth:180 }}>{o.items?.map(i=>`${i.qty}x ${i.name}`).join(', ')}</td>
-                      <td style={{ padding:'12px 16px', fontWeight:700, color:'#2d5a3d' }}>GH₵{parseFloat(o.total).toFixed(2)}</td>
+                      <td style={{ padding:'12px 16px', fontWeight:700, color:'#00013f' }}>GH₵{parseFloat(o.total).toFixed(2)}</td>
                       <td style={{ padding:'12px 16px' }}>
-                        <span style={{ fontSize:10, fontWeight:700, padding:'2px 8px', borderRadius:20, background:o.isPreorder?'rgba(124,58,237,.1)':'rgba(45,90,61,.1)', color:o.isPreorder?'#7C3AED':'#2d5a3d' }}>
+                        <span style={{ fontSize:10, fontWeight:700, padding:'2px 8px', borderRadius:20, background:o.isPreorder?'rgba(46, 0, 124, 0.28)':'rgba(0, 10, 66, 0.53)', color:o.isPreorder?'#2e007e':'#2d5a3d' }}>
                           {o.isPreorder?'Pre-order':'Instant'}
                         </span>
                       </td>

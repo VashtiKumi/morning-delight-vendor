@@ -22,9 +22,9 @@ export default function AnalyticsPage({ vendor }) {
     <div style={{ padding:32, animation:'fadeUp .4s ease' }}>
       <h1 style={{ fontFamily:'Sora, sans-serif', fontSize:24, fontWeight:800, color:'#1a1a1a', marginBottom:24 }}>Analytics</h1>
       <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:16, marginBottom:28 }}>
-        <StatCard label="Total Revenue"    value={`₵${revenue.toFixed(2)}`} dot="#10b981" />
-        <StatCard label="Delivered Orders" value={delivered.length}          dot="#ffd60a" />
-        <StatCard label="Menu Items"       value={menus.length}              dot="#ff6b35" />
+        <StatCard label="Total Revenue"    value={`₵${revenue.toFixed(2)}`} dot="#129e00" />
+        <StatCard label="Delivered Orders" value={delivered.length}          dot="#fdd300" />
+        <StatCard label="Menu Items"       value={menus.length}              dot="#f04000" />
       </div>
       <div style={{ background:'white', borderRadius:16, padding:24, boxShadow:'0 2px 12px rgba(0,0,0,.06)' }}>
         <h2 style={{ fontWeight:700, fontSize:15, marginBottom:20 }}>Top Selling Items</h2>

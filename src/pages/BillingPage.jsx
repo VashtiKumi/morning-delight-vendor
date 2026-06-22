@@ -8,9 +8,9 @@ import {
 } from '../utils/subscriptionService';
 
 const STATUS_CONFIG = {
-  trial:    { label:'Free Trial',    color:'#10b981', bg:'#ecfdf5', border:'#a7f3d0' },
-  active:   { label:'Active',        color:'#10b981', bg:'#ecfdf5', border:'#a7f3d0' },
-  overdue:  { label:'Payment Overdue', color:'#EF4444', bg:'#fef2f2', border:'#fecaca' },
+  trial:    { label:'Free Trial',    color:'#001d6b', bg:'#ecfdf5', border:'#a7f3d0' },
+  active:   { label:'Active',        color:'#189100', bg:'#ecfdf5', border:'#a7f3d0' },
+  overdue:  { label:'Payment Overdue', color:'#db0000', bg:'#fef2f2', border:'#fecaca' },
   no_subscription: { label:'No Subscription', color:'#9CA3AF', bg:'#f9fafb', border:'#E5E7EB' },
 };
 
@@ -18,7 +18,7 @@ const STATUS_CONFIG = {
 function InfoRow({ label, value, mono, accent }) {
   return (
     <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'9px 0', borderBottom:'1px solid #f0ebe2' }}>
-      <span style={{ fontSize:13, color:'#6B7280' }}>{label}</span>
+      <span style={{ fontSize:13, color:'#3f4653' }}>{label}</span>
       <span style={{ fontSize:13, fontWeight:700, color:accent||'#0F0F0F', fontFamily:mono?'monospace':'inherit' }}>{value}</span>
     </div>
   );
@@ -70,19 +70,19 @@ function PayCycleForm({ cycle, vendor, onPaid, showToast }) {
           <div style={{ fontFamily:'monospace', fontWeight:800, fontSize:20, color:'#0F0F0F', letterSpacing:2 }}>{COLLECTION_MOMO}</div>
         </div>
         <button onClick={()=>{ navigator.clipboard?.writeText(COLLECTION_MOMO); showToast('Number copied!','success'); }}
-          style={{ padding:'6px 12px', background:'#FF6B35', border:'none', borderRadius:8, color:'white', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>
+          style={{ padding:'6px 12px', background:'#e63d00', border:'none', borderRadius:8, color:'white', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>
           Copy
         </button>
       </div>
 
       <input value={ref} onChange={e=>{setRef(e.target.value);}}
         placeholder="e.g. GH24XXXXXXXXX"
-        style={{ width:'100%', padding:'12px 14px', border:'2px solid #fde68a', borderRadius:10, fontSize:15, fontFamily:'monospace', letterSpacing:1, outline:'none', textTransform:'uppercase', marginBottom:12 }}
-        onFocus={e=>e.target.style.borderColor='#FF6B35'}
+        style={{ width:'100%', padding:'12px 14px', border:'2px solid #ffcc00', borderRadius:10, fontSize:15, fontFamily:'monospace', letterSpacing:1, outline:'none', textTransform:'uppercase', marginBottom:12 }}
+        onFocus={e=>e.target.style.borderColor='#da3a00'}
         onBlur={e=>e.target.style.borderColor='#fde68a'}
       />
       <button onClick={handlePay} disabled={busy}
-        style={{ width:'100%', padding:'13px', background:busy?'#9CA3AF':'linear-gradient(135deg,#FF6B35,#F7931E)', border:'none', borderRadius:50, color:'white', fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:15, cursor:busy?'not-allowed':'pointer' }}>
+        style={{ width:'100%', padding:'13px', background:busy?'#002564':'linear-gradient(135deg,#FF6B35,#F7931E)', border:'none', borderRadius:50, color:'white', fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:15, cursor:busy?'not-allowed':'pointer' }}>
         {busy ? 'Submitting...' : 'Submit Payment →'}
       </button>
     </div>
@@ -97,10 +97,10 @@ function CycleRow({ cycle, vendor, showToast, onRefresh }) {
   const isPaid    = cycle.status === 'paid';
   const isCurrent = cycle.isCurrent;
 
-  const statusColor = isPaid    ? '#10b981'
-                    : isPending ? '#F59E0B'
-                    : isUnpaid  ? '#EF4444'
-                    : '#9CA3AF';
+  const statusColor = isPaid    ? '#119200'
+                    : isPending ? '#ffa200'
+                    : isUnpaid  ? '#cf0000'
+                    : '#002463';
 
   const statusLabel = isPaid    ? '✅ Paid & Verified'
                     : isPending ? '⏳ Awaiting Verification'
@@ -119,7 +119,7 @@ function CycleRow({ cycle, vendor, showToast, onRefresh }) {
           <div style={{ fontSize:11, color:'#9CA3AF', marginTop:1 }}>{cycle.orderCount} delivered order{cycle.orderCount!==1?'s':''}</div>
         </div>
         <div style={{ textAlign:'right' }}>
-          <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:20, color:isUnpaid?'#EF4444':'#0F0F0F' }}>
+          <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:20, color:isUnpaid?'#c90000':'#0F0F0F' }}>
             GH₵{cycle.commission.toFixed(2)}
           </div>
           <div style={{ fontSize:11, color:'#9CA3AF' }}>from GH₵{cycle.revenue.toFixed(2)} revenue</div>
@@ -134,7 +134,7 @@ function CycleRow({ cycle, vendor, showToast, onRefresh }) {
       )}
 
       {isPending && (
-        <div style={{ marginTop:10, background:'#fffbeb', border:'1px solid #fde68a', borderRadius:8, padding:'7px 12px', fontSize:12, color:'#92400E' }}>
+        <div style={{ marginTop:10, background:'#fffbeb', border:'1px solid #ffcc00', borderRadius:8, padding:'7px 12px', fontSize:12, color:'#92400E' }}>
           Your payment reference {cycle.paymentRef} is under review by admin.
         </div>
       )}
@@ -182,22 +182,22 @@ export default function BillingPage({ vendor, showToast }) {
             </div>
             {info.status === 'trial' && (
               <div style={{ fontSize:14, color:'#374151', marginTop:4 }}>
-                <strong style={{ color:'#10b981' }}>{fmtDays(info.daysLeft)}</strong> remaining in your free trial
+                <strong style={{ color:'#00a000' }}>{fmtDays(info.daysLeft)}</strong> remaining in your free trial
               </div>
             )}
             {info.status === 'overdue' && (
-              <div style={{ fontSize:14, color:'#EF4444', marginTop:4 }}>
+              <div style={{ fontSize:14, color:'#e20000', marginTop:4 }}>
                 GH₵<strong>{info.totalOwed.toFixed(2)}</strong> outstanding — please pay immediately
               </div>
             )}
             {info.status === 'active' && (
-              <div style={{ fontSize:14, color:'#374151', marginTop:4 }}>
+              <div style={{ fontSize:14, color:'#00106b', marginTop:4 }}>
                 Next billing due in <strong>{fmtDays(info.daysUntilDue)}</strong>
               </div>
             )}
           </div>
           <div style={{ background:'white', borderRadius:14, padding:'14px 18px', textAlign:'center', minWidth:120, boxShadow:'0 2px 8px rgba(0,0,0,.06)' }}>
-            <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:28, color:'#FF6B35' }}>{COMMISSION_RATE*100}%</div>
+            <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:28, color:'#df3b00' }}>{COMMISSION_RATE*100}%</div>
             <div style={{ fontSize:11, color:'#9CA3AF' }}>commission rate</div>
           </div>
         </div>
@@ -242,7 +242,7 @@ export default function BillingPage({ vendor, showToast }) {
           <InfoRow label="Period"          value={fmtCycleRange(info.current)} />
           <InfoRow label="Orders delivered" value={info.current.orderCount} />
           <InfoRow label="Revenue earned"  value={`GH₵${info.current.revenue.toFixed(2)}`} accent="#2d5a3d" />
-          <InfoRow label="Commission (10%)"value={`GH₵${info.current.commission.toFixed(2)}`} accent="#FF6B35" />
+          <InfoRow label="Commission (10%)"value={`GH₵${info.current.commission.toFixed(2)}`} accent="#e43d00" />
           <InfoRow label="Due date"        value={new Date(info.current.end).toLocaleDateString('en-GH',{day:'numeric',month:'long',year:'numeric'})} />
           {info.current.commission > 0 && (
             <div style={{ marginTop:10, background:'#fff7ed', border:'1px solid #fed7aa', borderRadius:10, padding:'10px 14px', fontSize:12, color:'#92400E' }}>
@@ -258,7 +258,7 @@ export default function BillingPage({ vendor, showToast }) {
           <div style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:16, marginBottom:14 }}>
             Billing History
             {info.unpaid?.length > 0 && (
-              <span style={{ marginLeft:10, fontSize:12, fontWeight:700, color:'#EF4444', background:'#fef2f2', border:'1px solid #fecaca', padding:'2px 10px', borderRadius:20 }}>
+              <span style={{ marginLeft:10, fontSize:12, fontWeight:700, color:'#cc0000', background:'#fef2f2', border:'1px solid #fecaca', padding:'2px 10px', borderRadius:20 }}>
                 {info.unpaid.length} unpaid
               </span>
             )}

@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import DB from '../utils/db';
 
-const GREEN   = '#2d5a3d';
-const GREEN_D = '#1e3d29';
+const GREEN   = '#000838';
+const GREEN_D = '#01002e';
 const WHITE   = '#FFFFFF';
 const LGRAY   = '#f8f7f4';
 const BORDER  = '#e0d8cc';
@@ -41,9 +41,9 @@ export default function ProfilePage({ vendor, setVendor, showToast }) {
     <div style={{ background:LGRAY, minHeight:'100vh' }}>
 
       {/* ── Clean green header — overflow:hidden prevents any bleed ── */}
-      <div style={{ background:`linear-gradient(135deg,${GREEN_D},${GREEN})`, padding:'32px 28px 72px', position:'relative', overflow:'hidden' }}>
+      <div style={{ background:`linear-gradient(135deg,${GREEN_D},${GREEN})`, padding:'22px 28px 25px', position:'block', overflow:'hidden' }}>
         {/* Decorative arc — fully inside header bounds */}
-        <div style={{ position:'absolute', top:-40, right:-30, width:130, height:130, borderRadius:'50%', background:'rgba(255,255,255,0.06)', pointerEvents:'none' }}/>
+        <div style={{ position:'absolute', top:-40, right:-30, width:130, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.06)', pointerEvents:'none' }}/>
         <div style={{ position:'relative', zIndex:1 }}>
           <h1 style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:22, color:WHITE, marginBottom:4 }}>
             Vendor Profile

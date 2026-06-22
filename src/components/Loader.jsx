@@ -5,7 +5,7 @@ export default function Loader() {
   const [prog, setProg] = useState(0);
   useEffect(() => { const t = setInterval(() => setProg((p) => Math.min(p + 2.5, 100)), 75); return () => clearInterval(t); }, []);
   return (
-    <div style={{ minHeight: '100vh', background: '#2d5a3d', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: '#000838', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
       <img src={FOOD_IMGS.VendorBg} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: .18 }} />
       <div style={{ position: 'absolute', inset: 0, background: '#07091A ' }} />
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

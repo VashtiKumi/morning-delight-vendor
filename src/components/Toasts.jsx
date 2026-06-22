@@ -1,4 +1,4 @@
-const COLORS = { success: '#2d7d46', error: '#c44b4b', info: '#2d5a3d', warning: '#c8871a' };
+const COLORS = { success: '#006d09', error: '#c20000', info: '#06005a', warning: '#ffa200' };
 const ICONS  = { success: '✓', error: '✕', info: '·', warning: '!' };
 
 export default function Toasts({ toasts }) {
