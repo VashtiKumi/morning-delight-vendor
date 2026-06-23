@@ -19,6 +19,7 @@ import BillingPage   from './pages/BillingPage';
 import ProfilePage   from './pages/ProfilePage';
 
 import './styles/global.css';
+import { fsInit } from './utils/firebaseSync';
 
 if (!DB.getAdmin()?.email) {
   DB.saveAdmin({ email:'admin@morningdelight.com', password:enc('Admin@2024'), name:'System Admin' });
@@ -117,6 +118,15 @@ export default function App() {
     const unlock = () => { SoundService.unlock(); document.removeEventListener('click', unlock); };
     document.addEventListener('click', unlock);
     return () => document.removeEventListener('click', unlock);
+  }, []);
+
+  // ── Firebase sync ──────────────────────────────────────────────────
+  useEffect(() => {
+    // Vendor listens to orders in real time (new customer orders appear instantly)
+    fsInit(['cb_orders', 'cb_customers', 'cb_menus']);
+    const onSync = () => setNewOrders(prev => [...prev]); // trigger check
+    window.addEventListener('md-sync', onSync);
+    return () => window.removeEventListener('md-sync', onSync);
   }, []);
 
   // Session restore
